@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html
+  lang="
+en">
+  <!-- TODO: Check lang attribute -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+      integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <script src="./app.js" defer></script>
+
+    <title>🛑 Change me</title>
+  </head>
+  <body>
+    <header class="header-container">
+      <h1 class="heading">TypeScript Phonebook</h1>
+    </header>
+    <main>
+      <article class="contact-section">
+        <form class="add-contact-form" action="submit">
+          <p>Enter contact info</p>
+          <input class="firstame-field" type="text" placeholder="Firstname" />
+          <input class="lastname-field" type="text" placeholder="Lastname" />
+          <input class="phone-field" type="number" placeholder="Phonenumber" />
+          <input class="address-field" type="text" placeholder="Address" />
+          <button class="submit-form-btn" type="submit">Add contact</button>
+        </form>
+      </article>
+      <section>
+        <table class="table-container">
+          <tr>
+            <th class="thead-one">Name</th>
+            <th class="thead-two">Phonenumber</th>
+            <th class="thead-three">Address</th>
+          </tr>
+          <tbody class="table-body"></tbody>
+        </table>
+      </section>
+    </main>
+    <footer></footer>
+  </body>
+</html>
