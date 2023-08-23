@@ -3,9 +3,9 @@ const tBody = document.querySelector('.table-body') as HTMLTableSectionElement;
 let theadSix = document.getElementById('thead-six') as HTMLTableSectionElement;
 theadSix.innerHTML = 'Show contacts &#x2BC6';
 
-let id: number = 2;
 let unchecked: boolean = true;
 let showContacts: boolean = false;
+let id: number = 0;
 
 
 interface Contact {
@@ -46,6 +46,7 @@ function extractValue(inputRef: string): string | number {
 }
 
 function extractReferens() {
+  id += 1;
 
   // Excracting string out of unkown object type
   let valueArr = Object.keys(inputRefs).map(key => {
@@ -63,7 +64,6 @@ function extractReferens() {
 }
 
 function createAndAppend() {
-  id += 1;
 
   contacts.forEach(contact => {
     let tr = document.createElement('tr') as HTMLTableRowElement;
@@ -76,23 +76,32 @@ function createAndAppend() {
     radioBtnLabel.appendChild(description);
     radioBtnLabel.htmlFor = 'radio-btn';
     radioBtn.type = 'radio';
-    radioBtn.id = `${id}`;
+    radioBtn.id = 'radio-btn'
     radioBtn.className = 'radio-btn';
     deleteBtn.className = 'delete-btn';
     
     radioBtn.addEventListener('click', e => {
 
-      if(unchecked === true) {
+      let textContent = tr.children[2].textContent as string;
+      let textContentKey = tr.children[4].textContent as string;
+
+      if(unchecked === false && tr.children[2].textContent === 'xxxx-xxx-xxx') {
         radioBtn.checked = false;
-      }else {
-        radioBtn.checked = true;
+        unchecked = true;
+        tr.children[2].textContent = getLocalStorage(textContentKey); 
       }
-    
-      if(!radioBtn.checked) {
+      
+      if(radioBtn.checked) {
         unchecked = false;
+        setLocalStorage(textContentKey, textContent);
+        tr.children[2].textContent = 'xxxx-xxx-xxx'
       }else {
         unchecked = true;
       }
+      
+      console.log('RB', radioBtn.checked)
+      console.log('unC', unchecked)
+      
     })
 
     let values = Object.values(contact);
@@ -135,6 +144,11 @@ theadSix.addEventListener('click', e => {
   }
 });
 
-function hideNumber() {
-  
+function setLocalStorage(textContentKey: string, textContent: string) {
+  localStorage.setItem(textContentKey, textContent);
+}
+
+function getLocalStorage(textContentKey: string) {
+  let item = localStorage.getItem(textContentKey);
+  return item;
 }

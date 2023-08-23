@@ -3,9 +3,9 @@ const submitBtn = document.querySelector('.submit-form-btn');
 const tBody = document.querySelector('.table-body');
 let theadSix = document.getElementById('thead-six');
 theadSix.innerHTML = 'Show contacts &#x2BC6';
-let id = 2;
 let unchecked = true;
 let showContacts = false;
+let id = 0;
 const inputRefs = {
     fnameRef: '.firstname-input',
     lnameRef: '.lastname-input',
@@ -33,6 +33,7 @@ function extractValue(inputRef) {
     return input.value;
 }
 function extractReferens() {
+    id += 1;
     // Excracting string out of unkown object type
     let valueArr = Object.keys(inputRefs).map(key => {
         return extractValue(inputRefs[key]);
@@ -47,7 +48,6 @@ function extractReferens() {
     contacts.push(contact);
 }
 function createAndAppend() {
-    id += 1;
     contacts.forEach(contact => {
         let tr = document.createElement('tr');
         let radioBtnLabel = document.createElement('label');
@@ -58,22 +58,27 @@ function createAndAppend() {
         radioBtnLabel.appendChild(description);
         radioBtnLabel.htmlFor = 'radio-btn';
         radioBtn.type = 'radio';
-        radioBtn.id = `${id}`;
+        radioBtn.id = 'radio-btn';
         radioBtn.className = 'radio-btn';
         deleteBtn.className = 'delete-btn';
         radioBtn.addEventListener('click', e => {
-            if (unchecked === true) {
+            let textContent = tr.children[2].textContent;
+            let textContentKey = tr.children[4].textContent;
+            if (unchecked === false && tr.children[2].textContent === 'xxxx-xxx-xxx') {
                 radioBtn.checked = false;
+                unchecked = true;
+                tr.children[2].textContent = getLocalStorage(textContentKey);
             }
-            else {
-                radioBtn.checked = true;
-            }
-            if (!radioBtn.checked) {
+            if (radioBtn.checked) {
                 unchecked = false;
+                setLocalStorage(textContentKey, textContent);
+                tr.children[2].textContent = 'xxxx-xxx-xxx';
             }
             else {
                 unchecked = true;
             }
+            console.log('RB', radioBtn.checked);
+            console.log('unC', unchecked);
         });
         let values = Object.values(contact);
         values.forEach(value => {
@@ -113,5 +118,10 @@ theadSix.addEventListener('click', e => {
         showContacts = false;
     }
 });
-function hideNumber() {
+function setLocalStorage(textContentKey, textContent) {
+    localStorage.setItem(textContentKey, textContent);
+}
+function getLocalStorage(textContentKey) {
+    let item = localStorage.getItem(textContentKey);
+    return item;
 }
