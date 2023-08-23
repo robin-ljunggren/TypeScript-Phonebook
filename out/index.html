@@ -24,23 +24,28 @@ en">
       <h1 class="heading">TypeScript Phonebook</h1>
     </header>
     <main>
-      <article class="contact-section">
-        <form class="add-contact-form" action="submit">
-          <p>Enter contact info</p>
-          <input class="firstame-field" type="text" placeholder="Firstname" />
-          <input class="lastname-field" type="text" placeholder="Lastname" />
-          <input class="phone-field" type="number" placeholder="Phonenumber" />
-          <input class="address-field" type="text" placeholder="Address" />
-          <button class="submit-form-btn" type="submit">Add contact</button>
-        </form>
-      </article>
-      <section>
+      <p class="para">Enter contact info</p>
+      <form class="add-contact-form">
+        <input class="firstname-input" type="text" placeholder="Firstname" />
+        <input class="lastname-input" type="text" placeholder="Lastname" />
+        <input class="phone-input" type="tel" placeholder="Phonenumber" />
+        <input class="address-input" type="text" placeholder="Address" />
+        <button class="submit-form-btn" type="submit">Add contact</button>
+        <input class="id-input" type="number" hidden />
+      </form>
+      <section class="table-section">
         <table class="table-container">
-          <tr>
-            <th class="thead-one">Name</th>
-            <th class="thead-two">Phonenumber</th>
-            <th class="thead-three">Address</th>
-          </tr>
+          <thead class="table-head">
+            <tr>
+              <th class="thead-one">Name</th>
+              <th class="thead-two">Lastname</th>
+              <th class="thead-three">Phonenumber</th>
+              <th class="thead-four">Address</th>
+              <th class="thead-five">ID</th>
+              <th class="thead-six"></th>
+              <th class="thead-seven"></th>
+            </tr>
+          </thead>
           <tbody class="table-body"></tbody>
         </table>
       </section>

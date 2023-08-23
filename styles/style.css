@@ -1,0 +1,66 @@
+body {
+  background-color: rgb(209, 209, 97)
+}
+.header-container {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(209, 209, 97);
+  font-size: 3rem;
+}
+.para {
+  margin-top: 2em;
+  text-align: center;
+  font-size: 1.5rem;
+}
+.add-contact-form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.firstname-input,
+.lastname-input,
+.phone-input,
+.address-input {
+  margin: 0.25em 0 0.25em 0;
+}
+.submit-form-btn {
+  margin-top: 0.25em;
+}
+.table-section {
+  display: flex;
+  justify-content: center;
+}
+.table-container {
+  margin-top: 2em;
+  border: 2px solid black;
+  width: 60%;
+}
+.table-head {
+  border-bottom: 4px black double;
+  background-color: white;
+}
+.thead-one,
+.thead-two,
+.thead-three,
+.thead-four,
+.thead-five,
+.thead-six {
+  text-align: center;
+  border-right: 2px black solid;
+  padding: 0.25em 1em 0.25em 1em;
+}
+.thead-seven {
+  text-align: center;
+  padding: 0.25em 1em 0.25em 1em;
+}
+.table-row {
+  text-align: center;
+  border-collapse: collapse;
+  background-color: white;
+}
+.table-data {
+  padding: 0.25em 0 0.25em 0;
+}
+.table-row:nth-child(2n) {
+  background-color: rgb(230, 230, 230);
+}
