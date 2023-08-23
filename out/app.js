@@ -1,8 +1,11 @@
 "use strict";
 const submitBtn = document.querySelector('.submit-form-btn');
 const tBody = document.querySelector('.table-body');
+let theadSix = document.getElementById('thead-six');
+theadSix.innerHTML = 'Show contacts &#x2BC6';
 let id = 2;
 let unchecked = true;
+let showContacts = false;
 const inputRefs = {
     fnameRef: '.firstname-input',
     lnameRef: '.lastname-input',
@@ -25,7 +28,6 @@ let contacts = [
         id: 2,
     }
 ];
-createAndAppend();
 function extractValue(inputRef) {
     let input = document.querySelector(inputRef);
     return input.value;
@@ -35,27 +37,14 @@ function extractReferens() {
     let valueArr = Object.keys(inputRefs).map(key => {
         return extractValue(inputRefs[key]);
     });
-    if (unchecked === true) {
-        let contact = {
-            firstname: valueArr[0],
-            lastname: valueArr[1],
-            phone: valueArr[2],
-            address: valueArr[3],
-            id: id,
-        };
-        contacts.push(contact);
-    }
-    else if (unchecked === false) {
-        let contact = {
-            firstname: valueArr[0],
-            lastname: valueArr[1],
-            phone: 'xxxx-xxx-xxx',
-            address: valueArr[3],
-            id: id,
-        };
-        contacts.push(contact);
-    }
-    createAndAppend();
+    let contact = {
+        firstname: valueArr[0],
+        lastname: valueArr[1],
+        phone: unchecked ? valueArr[2] : 'xxxx-xxx-xxx',
+        address: valueArr[3],
+        id: id,
+    };
+    contacts.push(contact);
 }
 function createAndAppend() {
     id += 1;
@@ -69,7 +58,7 @@ function createAndAppend() {
         radioBtnLabel.appendChild(description);
         radioBtnLabel.htmlFor = 'radio-btn';
         radioBtn.type = 'radio';
-        radioBtn.id = 'radio-btn';
+        radioBtn.id = `${id}`;
         radioBtn.className = 'radio-btn';
         deleteBtn.className = 'delete-btn';
         radioBtn.addEventListener('click', e => {
@@ -98,7 +87,31 @@ function createAndAppend() {
     });
 }
 submitBtn.addEventListener('click', e => {
-    contacts = [];
     e.preventDefault();
-    extractReferens();
+    tBody.innerHTML = '';
+    if (showContacts === false) {
+        theadSix.innerHTML = 'Hide contacts &#x2BC5';
+        extractReferens();
+        createAndAppend();
+        showContacts = true;
+    }
+    else {
+        extractReferens();
+        createAndAppend();
+    }
 });
+theadSix.addEventListener('click', e => {
+    if (showContacts === false) {
+        tBody.innerHTML = '';
+        theadSix.innerHTML = 'Hide contacts &#x2BC5';
+        createAndAppend();
+        showContacts = true;
+    }
+    else {
+        tBody.innerHTML = '';
+        theadSix.innerHTML = 'Show contacts &#x2BC6';
+        showContacts = false;
+    }
+});
+function hideNumber() {
+}

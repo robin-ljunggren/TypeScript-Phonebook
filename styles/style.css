@@ -43,13 +43,12 @@ body {
 .thead-two,
 .thead-three,
 .thead-four,
-.thead-five,
-.thead-six {
+.thead-five {
   text-align: center;
   border-right: 2px black solid;
   padding: 0.25em 1em 0.25em 1em;
 }
-.thead-seven {
+.thead-six {
   text-align: center;
   padding: 0.25em 1em 0.25em 1em;
 }
